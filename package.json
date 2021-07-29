@@ -11,6 +11,16 @@
     "react-scripts": "4.0.3",
     "web-vitals": "^1.1.2"
   },
+  "lint-staged": {
+    "src/**/*.{js,json}": [
+      "prettier --write"
+    ]
+  },
+   "husky": {
+     "hooks": {
+       "pre-commit": "lint-staged"
+     }
+   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -34,5 +44,16 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^7.0.1",
+    "lint-staged": "^11.1.1",
+    "prettier": "^2.3.2"
   }
 }
