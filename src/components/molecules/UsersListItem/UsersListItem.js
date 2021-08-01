@@ -6,7 +6,7 @@ import Button from 'components/atoms/Button/Button';
 import { ReactComponent as DeleteIcon } from 'assets/icons/delete-icon.svg';
 import Credentials from 'components/atoms/Credentials/Credentials';
 
-const UsersListItem = ({ userData: { name, average, attendance = 0 } }) => {
+const UsersListItem = ({ userData: { name, average, attendance = '0' } }) => {
   return (
     <Wrapper>
       <Average average={average} />
