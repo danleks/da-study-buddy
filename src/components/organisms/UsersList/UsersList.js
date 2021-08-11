@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { users as usersData } from 'data/users';
 import UsersListItem from 'components/molecules/UsersListItem/UsersListItem';
-import { StyledList, Wrapper } from './UsersList.styles';
+import { StyledList, StyledViewWrapper } from './UsersList.styles';
 
 const mockAPI = () => {
   return new Promise((resolve, reject) => {
@@ -33,14 +33,14 @@ const UsersList = () => {
     setUsers(filteredUsers);
   };
   return (
-    <Wrapper>
+    <StyledViewWrapper>
       <h2>{loading ? 'Loading...' : 'Students list'}</h2>
       <StyledList>
         {users.map((userData) => {
           return <UsersListItem deleteUser={deleteUser} key={userData.name} userData={userData} />;
         })}
       </StyledList>
-    </Wrapper>
+    </StyledViewWrapper>
   );
 };
 
