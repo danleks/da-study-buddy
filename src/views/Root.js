@@ -1,25 +1,29 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import UsersList from 'components/organisms/UsersList/UsersList';
 import { GlobalStyle } from 'assets/styles/globalStyles';
 import { theme } from 'assets/styles/theme';
 import { Wrapper } from './Root.styles';
-import FormField from '../components/molecules/FormField/FormField';
+import Form from 'components/organisms/Form/Form';
 
 const Root = (props) => {
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <Wrapper>
-        <div>
-          <FormField label="name" name="name" id="name" type="text" />
-          <FormField label="attendance" name="attendance" id="attendance" type="text" />
-          <FormField label="average" name="average" id="average" type="text" />
-          <button>add</button>
-        </div>
-        <UsersList />
-      </Wrapper>
-    </ThemeProvider>
+    <Router>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Wrapper>
+          <Switch>
+            <Route path="/add-user">
+              <Form />
+            </Route>
+            <Route path="/">
+              <UsersList />
+            </Route>
+          </Switch>
+        </Wrapper>
+      </ThemeProvider>
+    </Router>
   );
 };
 
