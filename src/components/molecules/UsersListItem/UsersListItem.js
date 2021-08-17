@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { ReactComponent as DeleteIcon } from 'assets/icons/delete-icon.svg';
 import { InnerWrapper, Wrapper } from './UserListItem.styles';
 import Average from 'components/atoms/Average/Average';
 import Button from 'components/atoms/Button/Button';
@@ -12,7 +13,9 @@ const UsersListItem = ({ deleteUser, userData: { name, average, attendance = '0'
       <InnerWrapper>
         <Credentials name={name} attendance={attendance} />
       </InnerWrapper>
-      <Button onClick={() => deleteUser(name)} />
+      <Button onClick={() => deleteUser(name)}>
+        <DeleteIcon />
+      </Button>
     </Wrapper>
   );
 };
