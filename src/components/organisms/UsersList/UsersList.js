@@ -1,47 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import { users as usersData } from 'data/users';
+import React, { useContext } from 'react';
 import UsersListItem from 'components/molecules/UsersListItem/UsersListItem';
-import { StyledList, StyledViewWrapper } from './UsersList.styles';
+import { StyledList } from './UsersList.styles';
+import PropTypes from 'prop-types';
+import { USERS_SHAPE } from '../../../types';
+import { Title } from 'components/atoms/Title/Title';
+import { UsersContext } from 'providers/UsersProvider';
 
-const mockAPI = () => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (usersData) {
-        resolve([...usersData]);
-      } else {
-        reject({ message: 'Error' });
-      }
-    }, 2000);
-  });
-};
-
-const UsersList = () => {
-  const [users, setUsers] = useState([]);
-  const [loading, setLoadingState] = useState(null);
-  useEffect(() => {
-    setLoadingState(true);
-    mockAPI()
-      .then((data) => {
-        setLoadingState(false);
-        setUsers(data);
-      })
-      .catch((error) => console.log(error));
-  }, []);
-
-  const deleteUser = (name) => {
-    const filteredUsers = users.filter((user) => user.name !== name);
-    setUsers(filteredUsers);
-  };
+const UsersList = ({ users }) => {
+  const { loading } = useContext(UsersContext);
   return (
-    <StyledViewWrapper>
-      <h2>{loading ? 'Loading...' : 'Students list'}</h2>
+    <>
+      <Title>{loading ? 'Loading...' : 'Students list'}</Title>
       <StyledList>
         {users.map((userData) => {
-          return <UsersListItem deleteUser={deleteUser} key={userData.name} userData={userData} />;
+          return <UsersListItem key={userData.name} userData={userData} />;
         })}
       </StyledList>
-    </StyledViewWrapper>
+    </>
   );
+};
+
+UsersList.propTypes = {
+  users: PropTypes.arrayOf(PropTypes.shape({ USERS_SHAPE })),
 };
 
 export default UsersList;
