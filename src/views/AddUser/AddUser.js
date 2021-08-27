@@ -5,7 +5,7 @@ import Button from 'components/atoms/Button/Button';
 import { UsersContext } from 'providers/UsersProvider';
 
 const INIT_STATE = {
-  name: '',
+  name: 'test',
   attendance: '',
   average: '',
 };
