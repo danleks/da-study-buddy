@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Wrapper } from './Navigation.styles';
-import Logo from '../../atoms/Logo/Logo';
+import { Wrapper, StyledLink } from './Navigation.styles';
+import Logo from 'components/atoms/Logo/Logo';
 
 const Navigation = () => {
   return (
@@ -9,10 +8,12 @@ const Navigation = () => {
       <Logo />
       <Wrapper>
         <li>
-          <Link to="/">Dashboard</Link>
+          <StyledLink to="/" exact>
+            Dashboard
+          </StyledLink>
         </li>
         <li>
-          <Link to="/add-user">Add user</Link>
+          <StyledLink to="/add-user">Add user</StyledLink>
         </li>
       </Wrapper>
     </nav>

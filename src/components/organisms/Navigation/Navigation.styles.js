@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
+
+const ACTIVE_CLASS_NAME = 'activeLink';
 
 export const Wrapper = styled.ul`
   display: flex;
@@ -15,28 +18,24 @@ export const Wrapper = styled.ul`
     position: relative;
     padding-right: 24px;
   }
+`;
 
-  a {
-    font-weight: 700;
-    font-size: ${({ theme }) => theme.fontSize.m};
-    text-decoration: none;
-    color: ${({ theme }) => theme.colors.darkGrey};
+export const StyledLink = styled(NavLink).attrs({ activeClassName: ACTIVE_CLASS_NAME })`
+  font-weight: 700;
+  font-size: ${({ theme }) => theme.fontSize.m};
+  text-decoration: none;
+  color: ${({ theme }) => theme.colors.darkGrey};
 
-    &:hover::after {
-      opacity: 1;
-    }
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      right: 0;
-      width: 20px;
-      height: 3px;
-      transform: translateY(-50%);
-      opacity: 0;
-      background-color: ${({ theme }) => theme.colors.darkPurple};
-      transition: 0.3s opacity ease-out;
-    }
+  &.activeLink::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 20px;
+    height: 3px;
+    transform: translateY(-50%);
+    opacity: 1;
+    background-color: ${({ theme }) => theme.colors.darkPurple};
+    transition: 0.3s opacity ease-out;
   }
 `;
