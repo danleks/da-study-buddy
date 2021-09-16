@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Wrapper } from './Credentials.styles';
 
 const Credentials = ({ name, attendance }) => {
-  console.log({ name, attendance });
   return (
     <Wrapper>
       <span className="name">{name}</span>

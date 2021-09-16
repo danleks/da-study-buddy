@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { users as usersData } from 'data/users';
 
-const mockAPI = () => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (usersData) {
-        resolve([...usersData]);
-      } else {
-        reject({ message: 'Error' });
-      }
-    }, 2000);
-  });
-};
+// const mockAPI = () => {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       if (usersData) {
+//         resolve([...usersData]);
+//       } else {
+//         reject({ message: 'Error' });
+//       }
+//     }, 2000);
+//   });
+// };
 
 export const UsersContext = React.createContext({
   users: [],
@@ -21,18 +21,17 @@ export const UsersContext = React.createContext({
 });
 
 const UsersProvider = ({ children }) => {
-  const [loading, setLoadingState] = useState(null);
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState(usersData);
 
-  useEffect(() => {
-    setLoadingState(true);
-    mockAPI()
-      .then((data) => {
-        setLoadingState(false);
-        setUsers(data);
-      })
-      .catch((error) => console.log(error));
-  }, []);
+  // useEffect(() => {
+  //   setLoadingState(true);
+  //   mockAPI()
+  //     .then((data) => {
+  //       setLoadingState(false);
+  //       setUsers(data);
+  //     })
+  //     .catch((error) => console.log(error));
+  // }, []);
 
   const deleteUser = (name) => {
     const filteredUsers = users.filter((user) => user.name !== name);
@@ -46,7 +45,6 @@ const UsersProvider = ({ children }) => {
     <UsersContext.Provider
       value={{
         users,
-        loading,
         deleteUser,
         handleAddUser,
       }}

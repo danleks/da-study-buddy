@@ -1,39 +1,66 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { ViewWrapper } from 'components/atoms/ViewWrapper/ViewWrapper';
 import FormField from 'components/molecules/FormField/FormField';
 import Button from 'components/atoms/Button/Button';
+import { useForm } from 'hooks/useForm';
 import { UsersContext } from 'providers/UsersProvider';
 
 const INIT_STATE = {
-  name: 'test',
+  name: '',
   attendance: '',
   average: '',
+  consent: false,
+  error: '',
 };
 
 const AddUser = () => {
   const { handleAddUser } = useContext(UsersContext);
-  const [values, setFormValues] = useState(INIT_STATE);
-
-  const handleInputChange = (e) => {
-    setFormValues({
-      ...values,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const { values, handleInputChange, handleClearValues, handleToggleConsent, handleThrowError } = useForm(INIT_STATE);
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
-    handleAddUser(values);
-    setFormValues(INIT_STATE);
+    if (values.consent) {
+      handleAddUser(values);
+      handleClearValues();
+    } else {
+      handleThrowError('You need to give consent');
+    }
   };
+
   return (
     <ViewWrapper as="form" onSubmit={handleSubmitForm}>
-      <FormField label="name" name="name" id="name" type="text" value={values.name} handleInputChange={handleInputChange} />
-      <FormField label="attendance" name="attendance" id="attendance" type="text" value={values.attendance} handleInputChange={handleInputChange} />
-      <FormField label="average" name="average" id="average" type="text" value={values.average} handleInputChange={handleInputChange} />
+      <FormField label="name" name="name" id="name" type="text" value={values.name} handleInputChange={handleInputChange} data-testid="Name" />
+      <FormField
+        label="attendance"
+        name="attendance"
+        id="attendance"
+        type="text"
+        value={values.attendance}
+        handleInputChange={handleInputChange}
+        data-testid="Attendance"
+      />
+      <FormField
+        label="average"
+        name="average"
+        id="average"
+        type="text"
+        value={values.average}
+        handleInputChange={handleInputChange}
+        data-testid="Average"
+      />
+      <FormField
+        label="consent"
+        name="consent"
+        id="consent"
+        type="checkbox"
+        value={values.consent}
+        onChange={handleToggleConsent}
+        data-testid="Average"
+      />
       <Button primary type="submit">
         add
       </Button>
+      {!values.consent ? values.error : null}
     </ViewWrapper>
   );
 };
