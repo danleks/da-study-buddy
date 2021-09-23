@@ -19,9 +19,10 @@ const AddUser = () => {
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
+    console.log(values);
     if (values.consent) {
       handleAddUser(values);
-      handleClearValues();
+      // handleClearValues();
     } else {
       handleThrowError('You need to give consent');
     }
@@ -29,7 +30,7 @@ const AddUser = () => {
 
   return (
     <ViewWrapper as="form" onSubmit={handleSubmitForm}>
-      <FormField label="name" name="name" id="name" type="text" value={values.name} handleInputChange={handleInputChange} data-testid="Name" />
+      <FormField label="name" name="name" id="name" type="text" value={values.name} handleInputChange={handleInputChange} data-testid="name" />
       <FormField
         label="attendance"
         name="attendance"
@@ -37,7 +38,7 @@ const AddUser = () => {
         type="text"
         value={values.attendance}
         handleInputChange={handleInputChange}
-        data-testid="Attendance"
+        data-testid="attendance"
       />
       <FormField
         label="average"
@@ -46,7 +47,7 @@ const AddUser = () => {
         type="text"
         value={values.average}
         handleInputChange={handleInputChange}
-        data-testid="Average"
+        data-testid="average"
       />
       <FormField
         label="consent"
@@ -55,7 +56,7 @@ const AddUser = () => {
         type="checkbox"
         value={values.consent}
         onChange={handleToggleConsent}
-        data-testid="Average"
+        data-testid="consent"
       />
       <Button primary type="submit">
         add

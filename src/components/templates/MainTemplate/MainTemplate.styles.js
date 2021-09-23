@@ -4,8 +4,10 @@ export const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
   display: grid;
-  grid-template-columns: 150px 1fr;
+  grid-template-rows: 82px 1fr;
+  grid-template-columns: 150px 1fr 0.75fr;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   background-color: ${({ theme }) => theme.colors.lightGrey};
+  overflow: hidden;
 `;

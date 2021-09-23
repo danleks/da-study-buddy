@@ -3,18 +3,27 @@ import { NavLink } from 'react-router-dom';
 
 const ACTIVE_CLASS_NAME = 'activeLink';
 
+export const StyledNav = styled.nav`
+  grid-column: 1 / 1;
+  grid-row: 1 / 3;
+`;
+
 export const Wrapper = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   gap: 14px;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   border-right: 1px solid ${({ theme }) => theme.colors.darkPurple};
-  padding-top: 47px;
+  padding-top: 20px;
   list-style-type: none;
 
-  li {
+  li:first-child {
+    width: 100%;
+  }
+
+  li:not(:first-child) {
     position: relative;
     padding-right: 24px;
   }

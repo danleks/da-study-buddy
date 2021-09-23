@@ -1,12 +1,14 @@
 import React from 'react';
-import { Wrapper, StyledLink } from './Navigation.styles';
+import { StyledNav, Wrapper, StyledLink } from './Navigation.styles';
 import Logo from 'components/atoms/Logo/Logo';
 
 const Navigation = () => {
   return (
-    <nav>
-      <Logo />
+    <StyledNav>
       <Wrapper>
+        <li>
+          <Logo />
+        </li>
         <li>
           <StyledLink to="/" exact>
             Dashboard
@@ -16,7 +18,7 @@ const Navigation = () => {
           <StyledLink to="/add-user">Add user</StyledLink>
         </li>
       </Wrapper>
-    </nav>
+    </StyledNav>
   );
 };
 

@@ -13,9 +13,11 @@ describe('Form Field', () => {
         <Dashboard />
       </>
     );
-    fireEvent.change(screen.getByTestId('Name'), { target: { value: 'Grażyna' } });
-    fireEvent.change(screen.getByTestId('Attendance'), { target: { value: '55%' } });
-    fireEvent.change(screen.getByTestId('Average'), { target: { value: '4.5' } });
+    fireEvent.change(screen.getByTestId('name'), { target: { value: 'Grażyna' } });
+    fireEvent.change(screen.getByTestId('name'), { target: { value: 'Grażyna' } });
+    fireEvent.change(screen.getByTestId('attendance'), { target: { value: '55%' } });
+    fireEvent.change(screen.getByTestId('average'), { target: { value: '4.5' } });
+    fireEvent.click(screen.getByTestId('consent'));
     fireEvent.click(screen.getByText('add'));
     screen.getByText('Grażyna');
   });
