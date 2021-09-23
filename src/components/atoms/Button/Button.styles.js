@@ -26,4 +26,16 @@ export const StyledButton = styled.button`
       background-color: ${({ theme }) => theme.colors.lightPurple};
       color: ${({ theme }) => theme.colors.darkGrey};
     `}
+
+  ${(props) =>
+    props.secondary &&
+    css`
+      width: unset;
+      height: unset;
+      padding: 10px 38px;
+      font-size: ${({ theme }) => theme.fontSize.m};
+      border-radius: 20px;
+      background-color: ${({ theme }) => theme.colors.lightPurple};
+      color: ${({ theme }) => theme.colors.darkGrey};
+    `}
 `;
