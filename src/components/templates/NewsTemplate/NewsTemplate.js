@@ -3,16 +3,9 @@ import Button from 'components/atoms/Button/Button';
 import { NewsWrapper, NewsTemplateHeader, ArticleWrapper, TitleWrapper, ContentWrapper } from './NewsTemplate.styles';
 import axios from 'axios';
 
-const NewsTemplate = () => {
-  const [articles, setArticles] = useState([]);
-  const [error, setError] = useState('');
-  useEffect(() => {
-    axios({
-      url: 'https://graphql.datocms.com/',
-      method: 'post',
-      data: {
-        query: `
-        {
+export const query = {
+  query: `
+         {
           allArticles {
             id
             title
@@ -23,13 +16,23 @@ const NewsTemplate = () => {
             }
           }
         }
-        `,
-      },
+      `,
+};
+
+const NewsTemplate = () => {
+  const [articles, setArticles] = useState([]);
+  const [error, setError] = useState('');
+  useEffect(() => {
+    axios({
+      url: 'https://graphql.datocms.com/',
+      method: 'post',
+      data: { query },
       headers: {
         authorization: `Bearer ${process.env.REACT_APP_DATOCMS_TOKEN}`,
       },
     })
       .then(({ data: { data } }) => setArticles(data.allArticles))
+      // .then((res) => console.log(res))
       .catch(() => setError('Cannot load articles'));
   }, []);
   return (
