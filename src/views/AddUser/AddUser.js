@@ -22,7 +22,7 @@ const AddUser = () => {
     console.log(values);
     if (values.consent) {
       handleAddUser(values);
-      // handleClearValues();
+      handleClearValues();
     } else {
       handleThrowError('You need to give consent');
     }
