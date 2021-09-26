@@ -25,15 +25,16 @@ describe('News Section', () => {
     mock.reset();
   });
 
-  it('Displays error when the article are not loaded correctly', async () => {
+  it('Displays loading when fetching data and then displays articles', async () => {
+    mock.onPost('https://graphql.datocms.com/', { query }).reply(200, articles);
+    renderWithProviders(<NewsTemplate />);
+    await screen.findByText(/loading/i);
+    await screen.findAllByText(/test/i);
+  });
+
+  it('Displays error when articles are not loaded correctly', async () => {
     mock.onPost('https://graphql.datocms.com/', { query }).reply(500);
     renderWithProviders(<NewsTemplate />);
     await screen.findByText(/cannot/i);
-  });
-
-  it('Displays the articles', async () => {
-    mock.onPost('https://graphql.datocms.com/', { query }).reply(200, articles);
-    renderWithProviders(<NewsTemplate />);
-    await screen.findAllByText(/test/i);
   });
 });
