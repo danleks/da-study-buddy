@@ -6,6 +6,7 @@ export const ViewWrapper = styled.div`
   align-items: flex-start;
   gap: 20px;
   width: 100%;
+  max-height: 100%;
   max-width: 500px;
   border-radius: 10px;
   padding: 44px;

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { USERS_SHAPE } from 'types';
 import { Title } from 'components/atoms/Title/Title';
 
-const UsersList = ({ users }) => {
+const UsersList = ({ users = [] }) => {
   return (
     <>
       <Title>Students list</Title>

@@ -3,8 +3,7 @@ import Button from 'components/atoms/Button/Button';
 import { NewsWrapper, NewsTemplateHeader, ArticleWrapper, TitleWrapper, ContentWrapper } from './NewsTemplate.styles';
 import axios from 'axios';
 
-export const query = {
-  query: `
+export const query = `
          {
           allArticles {
             id
@@ -16,8 +15,7 @@ export const query = {
             }
           }
         }
-      `,
-};
+      `;
 
 const NewsTemplate = () => {
   const [articles, setArticles] = useState([]);

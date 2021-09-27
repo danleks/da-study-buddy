@@ -1,17 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { users as usersData } from 'data/users';
-
-// const mockAPI = () => {
-//   return new Promise((resolve, reject) => {
-//     setTimeout(() => {
-//       if (usersData) {
-//         resolve([...usersData]);
-//       } else {
-//         reject({ message: 'Error' });
-//       }
-//     }, 2000);
-//   });
-// };
+// import { users as usersData } from 'data/users';
+import axios from 'axios';
 
 export const UsersContext = React.createContext({
   users: [],
@@ -21,17 +10,14 @@ export const UsersContext = React.createContext({
 });
 
 const UsersProvider = ({ children }) => {
-  const [users, setUsers] = useState(usersData);
+  const [users, setUsers] = useState([]);
 
-  // useEffect(() => {
-  //   setLoadingState(true);
-  //   mockAPI()
-  //     .then((data) => {
-  //       setLoadingState(false);
-  //       setUsers(data);
-  //     })
-  //     .catch((error) => console.log(error));
-  // }, []);
+  useEffect(() => {
+    axios
+      .get('/students')
+      .then(({ data }) => setUsers(data.students))
+      .catch((err) => console.log({ err }));
+  }, []);
 
   const deleteUser = (name) => {
     const filteredUsers = users.filter((user) => user.name !== name);

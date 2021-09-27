@@ -58,6 +58,10 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^7.0.1",
     "lint-staged": "^11.1.1",
+    "msw": "^0.35.0",
     "prettier": "^2.3.2"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }
