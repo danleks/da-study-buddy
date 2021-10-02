@@ -11,6 +11,16 @@ export const handlers = [
       })
     );
   }),
+  rest.post('/students/search', (req, res, ctx) => {
+    const regex = new RegExp(req.body.searchPhrase, 'i');
+    const matchingStudents = students.filter((student) => student.name.match(regex));
+    return res(
+      ctx.status(200),
+      ctx.json({
+        students: matchingStudents,
+      })
+    );
+  }),
   rest.get('/students/:id', (req, res, ctx) => {
     const matchingStudents = students.filter((student) => student.group === req.params.id);
     if (req.params.id) {

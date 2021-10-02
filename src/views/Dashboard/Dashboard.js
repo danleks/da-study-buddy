@@ -1,37 +1,32 @@
-import React, { useEffect, useState } from 'react';
-import UsersList from 'components/organisms/UsersList/UsersList';
+import React from 'react';
+import { Redirect, useParams } from 'react-router';
+import StudentsList from 'components/organisms/StudentsList/StudentsList';
 import { ViewWrapper } from 'components/atoms/ViewWrapper/ViewWrapper';
-import axios from 'axios';
-import { useParams } from 'react-router';
-import { Link } from 'react-router-dom';
+import { useStudents } from 'hooks/useStudents';
+import { Title } from 'components/atoms/Title/Title';
+import { Wrapper, InnerWrapper, StyledNav, StyledLink } from './Dashboard.styles';
 
 const Dashboard = () => {
-  const [students, setStudents] = useState([]);
-  const [groups, setGroups] = useState([]);
-  let { id } = useParams();
-  useEffect(() => {
-    axios
-      .get('/groups')
-      .then(({ data }) => setGroups(data.groups))
-      .catch((err) => console.log(err));
-  }, []);
-  useEffect(() => {
-    axios
-      .get(`/students/${id || groups[0]}`)
-      .then(({ data }) => setStudents(data.students))
-      .catch((err) => console.log(err));
-  }, [id, groups]);
+  const { groups } = useStudents();
+  const { id } = useParams();
+
+  if (!id && groups.length > 0) return <Redirect to={`group/${groups[0]}`} />;
   return (
-    <ViewWrapper>
-      <nav>
-        {groups.map((group) => (
-          <Link key={group} to={`/group/${group}`}>
-            {group}{' '}
-          </Link>
-        ))}
-      </nav>
-      <UsersList users={students} />
-    </ViewWrapper>
+    <Wrapper>
+      <InnerWrapper>
+        <Title>Group {id}</Title>
+        <StyledNav>
+          {groups.map((group) => (
+            <StyledLink key={group} to={`/group/${group}`}>
+              {group}{' '}
+            </StyledLink>
+          ))}
+        </StyledNav>
+      </InnerWrapper>
+      <ViewWrapper>
+        <StudentsList />
+      </ViewWrapper>
+    </Wrapper>
   );
 };
 
