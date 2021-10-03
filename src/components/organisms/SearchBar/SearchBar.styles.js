@@ -31,3 +31,22 @@ export const UserInfo = styled.span`
   font-size: ${({ theme }) => theme.fontSize.l};
   color: ${({ theme }) => theme.colors.darkGrey};
 `;
+
+export const InnerWrapper = styled.div`
+  width: 100%;
+  position: relative;
+`;
+export const SearchResultsWrapper = styled.ul`
+  width: 300px;
+  max-height: 400px;
+  position: absolute;
+  z-index: 1;
+  list-style: none;
+  background-color: ${({ theme }) => theme.colors.white};
+  overflow: scroll;
+
+  li {
+    padding: 10px 20px;
+    border-bottom: 1px solid ${({ theme }) => theme.colors.darkGrey};
+  }
+`;

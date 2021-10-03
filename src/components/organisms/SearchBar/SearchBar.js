@@ -2,7 +2,7 @@ import debounce from 'lodash.debounce';
 import Input from 'components/atoms/Input/Input';
 import { useStudents } from 'hooks/useStudents';
 import React, { useState, useEffect } from 'react';
-import { SearchBarWrapper, StatusInfo, LoginInfo, UserInfo } from './SearchBar.styles';
+import { SearchBarWrapper, StatusInfo, LoginInfo, UserInfo, InnerWrapper, SearchResultsWrapper } from './SearchBar.styles';
 
 const SearchBar = () => {
   const [searchPhrase, setSearchPhrase] = useState('');
@@ -27,8 +27,16 @@ const SearchBar = () => {
           <strong>Teacher</strong>
         </UserInfo>
       </StatusInfo>
-      <Input value={searchPhrase} onChange={(e) => setSearchPhrase(e.target.value)} />
-      {searchPhrase && matchingStudents.length > 0 ? matchingStudents.map((student) => <span key={student.name}>{student.name}</span>) : null}
+      <InnerWrapper>
+        <Input value={searchPhrase} onChange={(e) => setSearchPhrase(e.target.value)} />
+        {searchPhrase && matchingStudents.length > 0 ? (
+          <SearchResultsWrapper>
+            {matchingStudents.map((student) => (
+              <li key={student.name}>{student.name}</li>
+            ))}
+          </SearchResultsWrapper>
+        ) : null}
+      </InnerWrapper>
     </SearchBarWrapper>
   );
 };
