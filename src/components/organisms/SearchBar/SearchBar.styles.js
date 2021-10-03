@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Input from 'components/atoms/Input/Input';
+import { theme } from 'assets/styles/theme';
 
 export const SearchBarWrapper = styled.div`
   display: flex;
@@ -37,6 +38,7 @@ export const InnerWrapper = styled.div`
   position: relative;
 `;
 export const SearchResultsWrapper = styled.ul`
+  visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
   width: 300px;
   max-height: 400px;
   position: absolute;
@@ -44,9 +46,9 @@ export const SearchResultsWrapper = styled.ul`
   list-style: none;
   background-color: ${({ theme }) => theme.colors.white};
   overflow: scroll;
-
-  li {
-    padding: 10px 20px;
-    border-bottom: 1px solid ${({ theme }) => theme.colors.darkGrey};
-  }
+`;
+export const SearchResultsItem = styled.li`
+  padding: 10px 20px;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.darkGrey};
+  background-color: ${({ isHighlightend }) => (isHighlightend ? theme.colors.darkPurple : null)};
 `;

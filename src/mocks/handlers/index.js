@@ -12,8 +12,10 @@ export const handlers = [
     );
   }),
   rest.post('/students/search', (req, res, ctx) => {
-    const regex = new RegExp(req.body.searchPhrase, 'i');
-    const matchingStudents = students.filter((student) => student.name.match(regex));
+    const matchingStudents = req.body.searchPhrase
+      ? students.filter((student) => student.name.toLowerCase().includes(req.body.searchPhrase.toLowerCase()))
+      : [];
+    console.log(matchingStudents);
     return res(
       ctx.status(200),
       ctx.json({
