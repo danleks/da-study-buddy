@@ -11,7 +11,7 @@ export const NewsWrapper = styled.div`
   grid-row: 1 / 3;
   border-left: 1px solid ${({ theme }) => theme.colors.darkPurple};
   padding: 50px;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 `;
 
 export const NewsTemplateHeader = styled.h2`
@@ -21,7 +21,7 @@ export const NewsTemplateHeader = styled.h2`
 `;
 
 export const ArticleWrapper = styled(ViewWrapper)`
-  max-width: unset;
+  max-width: 500px;
   border-radius: 12px;
   color: ${({ theme }) => theme.colors.darkGrey};
 `;

@@ -14,9 +14,9 @@ const Navigation = () => {
             Dashboard
           </StyledLink>
         </li>
-        <li>
+        {/* <li>
           <StyledLink to="/add-user">Add user</StyledLink>
-        </li>
+        </li> */}
       </Wrapper>
     </StyledNav>
   );

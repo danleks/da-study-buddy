@@ -6,7 +6,6 @@ import { theme } from 'assets/styles/theme';
 import { Wrapper } from './Root.styles';
 import MainTemplate from 'components/templates/MainTemplate/MainTemplate';
 import Dashboard from 'views/Dashboard/Dashboard';
-import AddUser from 'views/AddUser/AddUser';
 
 const Root = (props) => {
   return (
@@ -19,9 +18,9 @@ const Root = (props) => {
               <Route exact path="/">
                 <Redirect to="/group" />
               </Route>
-              <Route path="/add-user">
+              {/* <Route path="/add-user">
                 <AddUser />
-              </Route>
+              </Route> */}
               <Route path="/group/:id?">
                 <Dashboard />
               </Route>

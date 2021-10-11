@@ -1,7 +1,7 @@
 import debounce from 'lodash.debounce';
 import Input from 'components/atoms/Input/Input';
 import { useStudents } from 'hooks/useStudents';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useCombobox } from 'downshift';
 import { SearchBarWrapper, StatusInfo, LoginInfo, UserInfo, InnerWrapper, SearchResultsWrapper, SearchResultsItem } from './SearchBar.styles';
 
@@ -28,8 +28,8 @@ const SearchBar = () => {
         </UserInfo>
       </StatusInfo>
       <InnerWrapper {...getComboboxProps()}>
-        <Input {...getInputProps()} />
-        <SearchResultsWrapper {...getMenuProps()} isVisible={isOpen && matchingStudents.length > 0}>
+        <Input {...getInputProps()} placeholder="Search" />
+        <SearchResultsWrapper {...getMenuProps()} isVisible={isOpen && matchingStudents.length > 0} aria-label="results">
           {isOpen
             ? matchingStudents.map((item, index) => (
                 <SearchResultsItem key={item.name} isHighlightend={highlightedIndex === index} {...getItemProps({ item, index })}>

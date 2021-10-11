@@ -8,17 +8,15 @@ import Credentials from 'components/atoms/Credentials/Credentials';
 import { USERS_SHAPE } from 'types';
 import { UsersContext } from 'providers/UsersProvider';
 
-const UsersListItem = ({ userData: { name, attendance, average = '0' } }) => {
+const UsersListItem = ({ userData: { name, attendance, average = '0' }, ...props }) => {
   const { deleteUser } = useContext(UsersContext);
   return (
-    <Wrapper>
+    <Wrapper {...props}>
       <Average average={average} />
       <InnerWrapper>
         <Credentials name={name} attendance={attendance} />
       </InnerWrapper>
-      <Button onClick={() => deleteUser(name)}>
-        <DeleteIcon />
-      </Button>
+      <Button deleteBtn label={<DeleteIcon />} onClick={() => deleteUser(name)} />
     </Wrapper>
   );
 };
