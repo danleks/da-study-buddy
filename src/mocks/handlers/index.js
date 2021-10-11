@@ -11,19 +11,7 @@ export const handlers = [
       })
     );
   }),
-  rest.post('/students/search', (req, res, ctx) => {
-    const matchingStudents = req.body.searchPhrase
-      ? students.filter((student) => student.name.toLowerCase().includes(req.body.searchPhrase.toLowerCase()))
-      : [];
-    console.log(matchingStudents);
-    return res(
-      ctx.status(200),
-      ctx.json({
-        students: matchingStudents,
-      })
-    );
-  }),
-  rest.get('/students/:id', (req, res, ctx) => {
+  rest.get('/groups/:id', (req, res, ctx) => {
     const matchingStudents = students.filter((student) => student.group === req.params.id);
     if (req.params.id) {
       return res(
@@ -37,6 +25,34 @@ export const handlers = [
       ctx.status(200),
       ctx.json({
         students,
+      })
+    );
+  }),
+  rest.get('/students/:id', (req, res, ctx) => {
+    const matchingStudent = students.find((student) => student.id === req.params.id);
+    if (!matchingStudent) {
+      return res(
+        ctx.status(404),
+        ctx.json({
+          error: 'No matching student found',
+        })
+      );
+    }
+    return res(
+      ctx.status(200),
+      ctx.json({
+        student: matchingStudent,
+      })
+    );
+  }),
+  rest.post('/students/search', (req, res, ctx) => {
+    const matchingStudents = req.body.searchPhrase
+      ? students.filter((student) => student.name.toLowerCase().includes(req.body.searchPhrase.toLowerCase()))
+      : [];
+    return res(
+      ctx.status(200),
+      ctx.json({
+        students: matchingStudents,
       })
     );
   }),

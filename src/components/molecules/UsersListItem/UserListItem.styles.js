@@ -7,6 +7,7 @@ export const Wrapper = styled.li`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  cursor: pointer;
 
   &:not(:last-child)::after {
     content: '';

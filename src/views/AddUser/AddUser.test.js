@@ -4,7 +4,7 @@ import { renderWithProviders } from 'helpers/renderWithProviders';
 import AddUser from './AddUser';
 import Dashboard from 'views/Dashboard/Dashboard';
 
-describe('Form Field', () => {
+describe.skip('Form Field', () => {
   it('Renders the component', () => {
     renderWithProviders(
       <>

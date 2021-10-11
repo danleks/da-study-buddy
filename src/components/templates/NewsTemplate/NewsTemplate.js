@@ -47,7 +47,7 @@ const NewsTemplate = () => {
               <p>{content}</p>
               {image ? <img src={image.url} alt="" /> : null}
             </ContentWrapper>
-            <Button secondary>Read more</Button>
+            <Button label="Read more" />
           </ArticleWrapper>
         ))
       ) : (

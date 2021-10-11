@@ -38,7 +38,7 @@ export const InnerWrapper = styled.div`
   position: relative;
 `;
 export const SearchResultsWrapper = styled.ul`
-  visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
+  display: ${({ isVisible }) => (isVisible ? 'block' : 'none')};
   width: 300px;
   max-height: 400px;
   position: absolute;
