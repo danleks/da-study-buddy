@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import Modal from 'react-modal';
 
-export const ModalWrapper = styled.div`
+export const ModalWrapper = styled(Modal)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
