@@ -9,6 +9,33 @@ import { Wrapper, InnerWrapper, StyledNav, StyledLink } from './Dashboard.styles
 import StudentDetails from 'components/molecules/StudentDetails/StudentDetails';
 import Modal from 'components/organisms/Modal/Modal';
 
+const mockedStudent = {
+  id: '1',
+  name: 'Adam Romański',
+  attendance: '39%',
+  average: '2.3',
+  group: 'A',
+  course: [
+    {
+      title: 'Economy and finances',
+      subcourses: [
+        {
+          title: 'Modern Economy',
+          grade: '3.4',
+        },
+        {
+          title: 'Trade and Logistics',
+          grade: '4.1',
+        },
+        {
+          title: 'Business Philosophy',
+          grade: '5.0',
+        },
+      ],
+    },
+  ],
+};
+
 const Dashboard = () => {
   const [groups, setGroups] = useState([]);
   const [currentStudent, setCurrentStudent] = useState(null);
@@ -44,11 +71,9 @@ const Dashboard = () => {
       </InnerWrapper>
       <ViewWrapper>
         <StudentsList handleOpenStudentDetails={handleOpenStudentDetails} />
-        {isOpen ? (
-          <Modal handleCloseModal={handleCloseModal}>
-            <StudentDetails student={currentStudent} />
-          </Modal>
-        ) : null}
+        <Modal isOpen={isOpen} handleCloseModal={handleCloseModal}>
+          <StudentDetails student={mockedStudent} />
+        </Modal>
       </ViewWrapper>
     </Wrapper>
   );
