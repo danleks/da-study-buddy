@@ -13,7 +13,7 @@ const Credentials = ({ name, attendance }) => {
 
 Credentials.propTypes = {
   name: PropTypes.string.isRequired,
-  attendance: PropTypes.string.isRequired,
+  attendance: PropTypes.number.isRequired,
 };
 
 export default Credentials;

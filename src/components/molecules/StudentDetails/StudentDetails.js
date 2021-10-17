@@ -26,16 +26,16 @@ const StudentDetails = ({ student }) => {
       <StudentCoursesInfoWrapper>
         <StudentMainCourseWrapper>
           <SubTitle>Course</SubTitle>
-          <CourseTitle>{student.course[0].title}</CourseTitle>
+          <CourseTitle>{student.course}</CourseTitle>
         </StudentMainCourseWrapper>
         <StudentAverageGradesWrapper>
           <SubTitle>Average grades</SubTitle>
           <StudentAllSubcoursesWrapper>
-            {student.course[0].subcourses.map((subcourse) => {
+            {student.grades.map((grade) => {
               return (
                 <StudentSingleSubcourseWrapper>
-                  <CourseSubtitle>{subcourse.title}</CourseSubtitle>
-                  <Average average={subcourse.grade}>{subcourse.grade}</Average>
+                  <CourseSubtitle>{grade.title}</CourseSubtitle>
+                  <Average average={grade.average}>{grade.average}</Average>
                 </StudentSingleSubcourseWrapper>
               );
             })}
