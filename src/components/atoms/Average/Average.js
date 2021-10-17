@@ -13,7 +13,7 @@ const Average = ({ average, isBig }) => {
 };
 
 Average.propTypes = {
-  average: PropTypes.string.isRequired,
+  average: PropTypes.number.isRequired,
 };
 
 export default Average;

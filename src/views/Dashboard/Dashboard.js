@@ -9,33 +9,6 @@ import { Wrapper, InnerWrapper, StyledNav, StyledLink } from './Dashboard.styles
 import StudentDetails from 'components/molecules/StudentDetails/StudentDetails';
 import Modal from 'components/organisms/Modal/Modal';
 
-const mockedStudent = {
-  id: '1',
-  name: 'Adam Romański',
-  attendance: '39%',
-  average: '2.3',
-  group: 'A',
-  course: [
-    {
-      title: 'Economy and finances',
-      subcourses: [
-        {
-          title: 'Modern Economy',
-          grade: '3.4',
-        },
-        {
-          title: 'Trade and Logistics',
-          grade: '4.1',
-        },
-        {
-          title: 'Business Philosophy',
-          grade: '5.0',
-        },
-      ],
-    },
-  ],
-};
-
 const Dashboard = () => {
   const [groups, setGroups] = useState([]);
   const [currentStudent, setCurrentStudent] = useState(null);
@@ -46,6 +19,7 @@ const Dashboard = () => {
   useEffect(() => {
     (async () => {
       const groups = await getGroups();
+      console.log(groups);
       setGroups(groups);
     })();
   }, [getGroups]);
@@ -56,15 +30,15 @@ const Dashboard = () => {
     handleOpenModal();
   };
 
-  if (!id && groups.length > 0) return <Redirect to={`group/${groups[0]}`} />;
+  if (!id && groups.length > 0) return <Redirect to={`group/${groups[0].id}`} />;
   return (
     <Wrapper>
       <InnerWrapper>
         <Title>Group {id}</Title>
         <StyledNav>
           {groups.map((group) => (
-            <StyledLink key={group} to={`/group/${group}`}>
-              {group}{' '}
+            <StyledLink key={group.id} to={`/group/${group.id}`}>
+              {group.id}{' '}
             </StyledLink>
           ))}
         </StyledNav>
@@ -72,7 +46,7 @@ const Dashboard = () => {
       <ViewWrapper>
         <StudentsList handleOpenStudentDetails={handleOpenStudentDetails} />
         <Modal isOpen={isOpen} handleCloseModal={handleCloseModal}>
-          <StudentDetails student={mockedStudent} />
+          <StudentDetails student={currentStudent} />
         </Modal>
       </ViewWrapper>
     </Wrapper>
